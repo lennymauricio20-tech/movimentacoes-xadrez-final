@@ -1,0 +1,42 @@
+class Peca:
+    def __init__(self, nome):
+        self.nome = nome
+
+    def movimento_valido(self, x1, y1, x2, y2):
+        pass
+
+
+class Torre(Peca):
+    def movimento_valido(self, x1, y1, x2, y2):
+        return x1 == x2 or y1 == y2
+
+
+class Bispo(Peca):
+    def movimento_valido(self, x1, y1, x2, y2):
+        return abs(x2 - x1) == abs(y2 - y1)
+
+
+class Rainha(Peca):
+    def movimento_valido(self, x1, y1, x2, y2):
+        return (
+            x1 == x2 or
+            y1 == y2 or
+            abs(x2 - x1) == abs(y2 - y1)
+        )
+
+
+class Cavalo(Peca):
+    def movimento_valido(self, x1, y1, x2, y2):
+        return (abs(x2 - x1), abs(y2 - y1)) in [(2, 1), (1, 2)]
+
+
+class Rei(Peca):
+    def movimento_valido(self, x1, y1, x2, y2):
+        return abs(x2 - x1) <= 1 and abs(y2 - y1) <= 1
+
+
+class Peao(Peca):
+    def movimento_valido(self, x1, y1, x2, y2):
+        if x1 == x2 and y2 == y1 + 1:
+            return True
+        return False
